@@ -46,7 +46,7 @@ function StudentList() {
         </div>
         <div className='space-x-2'>
           <button className='bg-blue-700 text-white py-1 px-2 rounded-md' onClick={()=>{
-          navigate(`/add/${undefined}`)
+          navigate(`/add/${'new_student'}`)
           }}>Add</button>
           <select name="course" value={course} onChange={(e)=>{
             

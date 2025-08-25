@@ -36,7 +36,7 @@ export default function StudentRegistrationForm() {
         console.log(values)
         const students:student_data_type[]=JSON.parse(localStorage.getItem('students')|| '[]' ) 
         if(parseInt(id||'')>=0){
-        students[parseInt(id)]=values
+        students[parseInt(id||'')]=values
         localStorage.setItem('students',JSON.stringify(students))
         resetForm()
         navigate('/')
