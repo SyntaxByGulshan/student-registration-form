@@ -3,7 +3,8 @@ import { useNavigate,useParams } from "react-router-dom";
 
 export default function StudentRegistrationForm() {
   const {id}=useParams()
-  console.log(id)
+  
+  console.log(parseInt(id||''))
   const navigate=useNavigate()
  const data:student_data_type[]= JSON.parse(localStorage.getItem('students')||'[]')
  console.log(data)
@@ -30,14 +31,15 @@ export default function StudentRegistrationForm() {
         console.log('submit values')
         console.log(values)
         const students:student_data_type[]=JSON.parse(localStorage.getItem('students')|| '[]' ) 
-        if(id){
+        if(parseInt(id||'')){
           students[parseInt(id)]=values
         localStorage.setItem('students',JSON.stringify(students))
         resetForm()
         navigate('/')
         }
        else{
-         students.push(values)
+        console.log('add new student')
+        students.push(values)
         localStorage.setItem('students',JSON.stringify(students))
         resetForm()
         navigate('/')
@@ -90,7 +92,7 @@ export default function StudentRegistrationForm() {
         handleSubmit
       })=>(
         <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black ">
-      <div className="bg-white shadow-xl rounded-lg p-8 w-full max-w-md">
+      <div className="bg-white costom-shadow rounded-lg p-8 w-full max-w-md">
        
         <form className="space-y-12" onSubmit={handleSubmit} >
           {/* Name */}
