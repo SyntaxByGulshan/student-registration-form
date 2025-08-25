@@ -1,5 +1,6 @@
 import { Formik} from "formik";
 import { useNavigate,useParams } from "react-router-dom";
+import * as yup from "yup";
 
 export default function StudentRegistrationForm() {
   const {id}=useParams()
@@ -20,6 +21,12 @@ export default function StudentRegistrationForm() {
     email:editData?.email||'', 
     course:editData?.course||'',
   }
+  const validationSchema=yup.object().shape({
+    name:yup.string().required('please enter name').trim().matches(/^[A-Za-z]+(?: [A-Za-z]+){0,2}$/,'please enter valid name').max(50,'size not should be greater then 50'),
+    age:yup.number().typeError('please enter valid age').required('please enter age').min(15,'age not less then 15').max(60,'age not greater then 60'),
+    email:yup.string().required('please enter email').email('please enter valid email'),
+    course:yup.string().required('please select course')
+  })
   return (
     <Formik 
     initialValues={initialvalue}
@@ -43,42 +50,7 @@ export default function StudentRegistrationForm() {
        }
       }
     }
-   
-    validate={
-      
-     (values,)=>{
-      console.log(values)
-      const errors:Record<string,string> = { 
-      }
-      if(values.name==''){
-        errors.name='plese enter name'
-      }
-      else if(!/^[A-Za-z]+(?: [A-Za-z]+){0,2}$/.test(values.name)){
-        errors.name='plese enter correct name'
-      }
-      else if(values.name.length>52){
-        errors.name='size not should be grater then 50'
-      }
-      if(values.course==''){
-        errors.course='plese select cource'
-      }
-      if( values.age==undefined || values.age==''){
-          errors.age='plese enter valid age'
-      }
-      else if(parseInt(values.age)<=15 || parseInt(values.age)>=60){
-        errors.age='age not grater then 60 and small then 15 '
-      }
-      if(values.email==''){
-        errors.email='plese fill email'
-      }
-      else if(!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(values.email)){
-        errors.email="plese enter valid email"
-      }
-
-      // console.log(value)
-      return errors
-     }  
-    }
+   validationSchema={validationSchema}
     >
       {({
         values,
