@@ -22,7 +22,7 @@ export default function StudentRegistrationForm() {
     course:editData?.course||'',
   }
   const validationSchema=yup.object().shape({
-    name:yup.string().required('please enter name').trim().matches(/^[A-Za-z]+(?: [A-Za-z]+){0,2}$/,'please enter valid name').max(50,'size not should be greater then 50'),
+    name:yup.string().required('please enter name').trim().matches(/^[A-Za-z]+(?: [A-Za-z]+){0,2}$/,'please enter valid name').max(50,'size not should be greater then 50').min(3,'size not should be less then 3'),
     age:yup.number().typeError('please enter valid age').required('please enter age').min(15,'age not less then 15').max(60,'age not greater then 60'),
     email:yup.string().required('please enter email').email('please enter valid email'),
     course:yup.string().required('please select course')
