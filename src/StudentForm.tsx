@@ -3,14 +3,11 @@ import { useNavigate,useParams } from "react-router-dom";
 
 export default function StudentRegistrationForm() {
   const {id}=useParams()
-  
   console.log(parseInt(id||''))
   const navigate=useNavigate()
  const data:student_data_type[]= JSON.parse(localStorage.getItem('students')||'[]')
  console.log(data)
   const editData:student_data_type|undefined=data[parseInt(id||'')]
-
-
   type student_data_type={
     name:string 
     age:string
