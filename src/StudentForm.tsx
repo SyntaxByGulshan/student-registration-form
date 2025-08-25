@@ -92,9 +92,9 @@ export default function StudentRegistrationForm() {
         handleSubmit
       })=>(
         <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black ">
-      <div className="bg-white costom-shadow rounded-lg p-8 w-full max-w-md">
+      <div className="bg-white costom-shadow rounded-lg p-8 w-full max-w-lg">
        
-        <form className="space-y-12" onSubmit={handleSubmit} >
+        <form className="space-y-8" onSubmit={handleSubmit} >
           {/* Name */}
           <div>
             <label htmlFor="name" className="block font-medium ">Name</label>
@@ -169,13 +169,13 @@ export default function StudentRegistrationForm() {
           >
             Submit
           </button>
-          <button type="button" 
+          {/* <button type="button" 
           className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
           onClick={()=>{
            navigate('/')
           }}>
             cancel
-          </button>
+          </button> */}
         </form>
       </div>
     </div>
